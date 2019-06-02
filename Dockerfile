@@ -1,5 +1,9 @@
-FROM alpine
+FROM golang
 
-COPY gopath/bin/gcp-cd-codelab /go/bin/gcp-cd-codelab
+ADD . /go/src/spinnaker.io/demo/k8s-demo
 
-ENTRYPOINT /go/bin/gcp-cd-codelab
+RUN go install spinnaker.io/demo/k8s-demo
+
+ADD ./content /content
+
+ENTRYPOINT /go/bin/k8s-demo
